@@ -1,0 +1,15 @@
+name: Daily Update and Untar
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight (UTC)
+
+jobs:
+  update_and_untar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Pull updates
+        run: git pull
+      - name: Untar blackip.tar.gz
+        run: tar -xvf blackip.tar.gz
